@@ -1,0 +1,21 @@
+{% extends "polls/base.html" %}
+
+{% block title %}Список опросов{% endblock %}
+
+{% block content %}
+    <h2>Доступные опросы</h2>
+    {% if latest_question_list %}
+        <ul>
+        {% for question in latest_question_list %}
+            <li>
+                <a href="{% url 'polls:detail' question.id %}">
+                    {{ question.question_text }}
+                </a>
+                <small>(опубликован: {{ question.pub_date|date:"d.m.Y H:i" }})</small>
+            </li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p class="error">Нет доступных опросов.</p>
+    {% endif %}
+{% endblock %}

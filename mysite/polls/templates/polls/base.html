@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Система опросов{% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>{% block header %}Система опросов Django{% endblock %}</h1>
+        </header>
+
+        <main>
+            {% block content %}
+            {% endblock %}
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Система опросов. Все права защищены.</p>
+        </footer>
+    </div>
+</body>
+</html>
