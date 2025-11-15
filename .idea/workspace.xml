@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="83c2badb-1886-4113-b5a2-3b4632f7f86d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/LR3_django.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/polls/static/polls/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/polls/templates/polls/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/polls/templates/polls/detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/polls/templates/polls/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/polls/templates/polls/results.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mysite/polls/urls.py" afterDir="false" />
+    <list default="true" id="83c2badb-1886-4113-b5a2-3b4632f7f86d" name="Changes" comment="[Django basics] - LR 3 Done">
+      <change afterPath="$PROJECT_DIR$/mysite/polls/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysite/polls/templates/polls/create_question_advanced.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysite/polls/templates/polls/create_question_simple.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mysite/polls/templates/polls/my_questions.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/mysite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/mysite/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/polls/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/polls/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/polls/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/polls/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/polls/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/polls/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +31,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "NSODAT"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/NSODAT/PROG7_LR3",
+    "accountId": "9a6f8e3a-a8aa-4c4a-859e-6477247a79be"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 5
 }]]></component>
@@ -65,6 +75,19 @@
       <option name="presentableId" value="Default" />
       <updated>1763199409356</updated>
     </task>
+    <task id="LOCAL-00001" summary="[Django basics] - LR 3 Done">
+      <option name="closed" value="true" />
+      <created>1763200340990</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1763200340990</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="[Django basics] - LR 3 Done" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Django basics] - LR 3 Done" />
   </component>
 </project>

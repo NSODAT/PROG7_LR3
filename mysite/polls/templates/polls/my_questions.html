@@ -1,0 +1,53 @@
+{% extends "polls/base.html" %}
+
+{% block title %}Мои опросы{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>Мои опросы</h2>
+            <div>
+                <a href="{% url 'polls:create_simple' %}" class="btn btn-outline-primary btn-sm">Простая форма</a>
+                <a href="{% url 'polls:create_advanced' %}" class="btn btn-primary btn-sm">Продвинутая форма</a>
+            </div>
+        </div>
+        
+        {% if questions %}
+            <div class="list-group">
+                {% for question in questions %}
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">
+                                <a href="{% url 'polls:detail' question.id %}" class="text-decoration-none">
+                                    {{ question.question_text }}
+                                </a>
+                            </h5>
+                            <small>{{ question.pub_date|date:"d.m.Y H:i" }}</small>
+                        </div>
+                        <p class="mb-1">
+                            Всего голосов: <strong>{{ question.get_total_votes }}</strong> |
+                            Вариантов ответа: <strong>{{ question.choice_set.count }}</strong>
+                        </p>
+                        <div class="mt-2">
+                            {% for choice in question.choice_set.all|slice:":3" %}
+                                <span class="badge bg-light text-dark me-1">
+                                    {{ choice.choice_text }} ({{ choice.votes }})
+                                </span>
+                            {% endfor %}
+                            {% if question.choice_set.count > 3 %}
+                                <span class="badge bg-secondary">+{{ question.choice_set.count|add:"-3" }} еще</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="alert alert-info">
+                <h4>У вас пока нет созданных опросов</h4>
+                <p>Создайте свой первый опрос, используя одну из форм выше.</p>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

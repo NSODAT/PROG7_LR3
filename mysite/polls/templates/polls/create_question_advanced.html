@@ -1,0 +1,107 @@
+{% extends "polls/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Создать опрос (продвинутая форма){% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="mb-0">Создать новый опрос</h2>
+                <small class="text-muted">Продвинутая форма с динамическими полями</small>
+            </div>
+            <div class="card-body">
+                <form method="post" id="question-form">
+                    {% csrf_token %}
+                    
+                    <div class="mb-4">
+                        {{ question_form|crispy }}
+                    </div>
+                    
+                    <h5>Варианты ответов:</h5>
+                    <div id="choices-formset">
+                        {{ choice_formset.management_form }}
+                        {% for form in choice_formset %}
+                            <div class="choice-form mb-2">
+                                <div class="input-group">
+                                    {{ form.choice_text }}
+                                    {% if forloop.counter > 2 %}
+                                    <button type="button" class="btn btn-outline-danger remove-choice" onclick="removeChoice(this)">
+                                        ✕
+                                    </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    
+                    <button type="button" class="btn btn-outline-success btn-sm mt-2" onclick="addChoice()">
+                        + Добавить вариант
+                    </button>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a href="{% url 'polls:index' %}" class="btn btn-secondary me-md-2">Отмена</a>
+                        <button type="submit" class="btn btn-primary">Создать опрос</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let choiceIndex = {{ choice_formset.total_form_count }};
+
+function addChoice() {
+    const formset = document.getElementById('choices-formset');
+    const template = document.createElement('div');
+    template.className = 'choice-form mb-2';
+    template.innerHTML = `
+        <div class="input-group">
+            <input type="text" name="choices-${choiceIndex}-choice_text" 
+                   class="form-control" placeholder="Введите вариант ответа" 
+                   maxlength="200" id="id_choices-${choiceIndex}-choice_text">
+            <button type="button" class="btn btn-outline-danger remove-choice" onclick="removeChoice(this)">
+                ✕
+            </button>
+        </div>
+    `;
+    formset.appendChild(template);
+    
+    // Обновляем TOTAL_FORMS в management form
+    const totalForms = document.getElementById('id_choices-TOTAL_FORMS');
+    totalForms.value = ++choiceIndex;
+}
+
+function removeChoice(button) {
+    const form = button.closest('.choice-form');
+    form.remove();
+    choiceIndex--;
+    
+    // Обновляем TOTAL_FORMS в management form
+    const totalForms = document.getElementById('id_choices-TOTAL_FORMS');
+    totalForms.value = choiceIndex;
+    
+    // Переиндексируем оставшиеся формы
+    reindexForms();
+}
+
+function reindexForms() {
+    const forms = document.querySelectorAll('.choice-form');
+    let newIndex = 0;
+    
+    forms.forEach((form, index) => {
+        const input = form.querySelector('input[type="text"]');
+        const oldName = input.name;
+        const newName = oldName.replace(/choices-\d+-/, `choices-${newIndex}-`);
+        input.name = newName;
+        input.id = input.id.replace(/id_choices-\d+-/, `id_choices-${newIndex}-`);
+        newIndex++;
+    });
+    
+    choiceIndex = newIndex;
+    document.getElementById('id_choices-TOTAL_FORMS').value = newIndex;
+}
+</script>
+{% endblock %}
